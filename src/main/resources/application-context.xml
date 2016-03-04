@@ -5,7 +5,15 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<bean name="messageReader" class="com.yaliprowess.spring.session.basic.service.impl.MessageFileReaderImpl">
+	<bean name="fileMessageReader"
+		class="com.yaliprowess.spring.session.basic.message.impl.FileMessageReaderImpl">
 		<constructor-arg value="res/file.txt" />
 	</bean>
+	
+	<!-- Abstract -->
+	<bean name="readerService" class="com.yaliprowess.spring.session.basic.service.ReaderService">
+		<!-- <constructor-arg ref="fileMessageReader" /> -->
+		<constructor-arg ref="fileMessageReader" />
+	</bean>
+	
 </beans>
