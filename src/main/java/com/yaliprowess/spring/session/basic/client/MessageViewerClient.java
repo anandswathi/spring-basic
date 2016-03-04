@@ -3,8 +3,7 @@ package com.yaliprowess.spring.session.basic.client;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.yaliprowess.spring.session.basic.service.MessageReader;
-import com.yaliprowess.spring.session.basic.service.impl.MessageFileReaderImpl;
+import com.yaliprowess.spring.session.basic.service.base.MessageReader;
 
 public class MessageViewerClient {
 	
@@ -15,7 +14,7 @@ public class MessageViewerClient {
 		ctx = new ClassPathXmlApplicationContext("application-context.xml");		
 	}	
 	public String fetchData() {
-		messageReader = (MessageFileReaderImpl) ctx.getBean("messageReader");
+		messageReader = (MessageReader) ctx.getBean("messageReader");
 		return messageReader.read();
 	}
 }
