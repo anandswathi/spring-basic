@@ -7,19 +7,23 @@
 
 	<bean name="fileMessageReader"
 		class="com.yaliprowess.spring.session.basic.message.impl.FileMessageReaderImpl">
-		<constructor-arg value="res/file.txt" />
+		<constructor-arg value="${message.file.name}" />
 	</bean>
 	<bean name="httpMessageReader"
 		class="com.yaliprowess.spring.session.basic.message.impl.HTTPMessageReaderImpl">
-		<property name="restUrl"
-			value="http://jsonplaceholder.typicode.com/comments/1" />
+		<property name="restUrl" value="${message.http.url}" />
 	</bean>
 
-	<!-- Abstract -->
+	<!-- Service layer -->
 	<bean name="readerService"
 		class="com.yaliprowess.spring.session.basic.service.ReaderService">
 		<!-- <constructor-arg ref="fileMessageReader" /> -->
 		<constructor-arg ref="httpMessageReader" />
 	</bean>
-
+	
+	<!-- Property file loader --> 
+	<bean id="placeholderConfig"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:application.properties" />
+	</bean>
 </beans>
