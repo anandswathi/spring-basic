@@ -4,6 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.yaliprowess.spring.session.basic.service.MessageReader;
+import com.yaliprowess.spring.session.basic.service.impl.MessageFileReaderImpl;
 
 public class MessageViewerClient {
 	
@@ -14,7 +15,7 @@ public class MessageViewerClient {
 		ctx = new ClassPathXmlApplicationContext("application-context.xml");		
 	}	
 	public String fetchData() {
-		messageReader = (MessageReader) ctx.getBean("messageReader");
+		messageReader = (MessageFileReaderImpl) ctx.getBean("messageReader");
 		return messageReader.read();
 	}
 }
