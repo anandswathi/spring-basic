@@ -1,16 +1,20 @@
 package com.yaliprowess.spring.session.basic.client;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.yaliprowess.spring.session.basic.service.MessageReader;
 
 public class MessageViewerClient {
 	
-	private MessageReader messageReader = null;
-	private String fileName = "res/file.txt";
+	private ApplicationContext ctx = null;	
+	private MessageReader messageReader = null;	
 
 	public MessageViewerClient() {
-		messageReader = new MessageReader(fileName);
+		ctx = new ClassPathXmlApplicationContext("application-context.xml");		
 	}	
 	public String fetchData() {
+		messageReader = (MessageReader) ctx.getBean("messageReader");
 		return messageReader.read();
 	}
 }

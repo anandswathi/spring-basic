@@ -5,10 +5,10 @@
 	<artifactId>basic</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-basic</name>
-	<description>sample program</description>	
+	<description>sample program</description>
 	<build>
 		<plugins>
-			<!-- To execute the Application Main  -->
+			<!-- To execute the Application Main -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
@@ -21,21 +21,25 @@
 						</goals>
 						<configuration>
 							<mainClass>com.yaliprowess.spring.session.basic.Main</mainClass>
-							<!-- <arguments>
-								<argument>arg0</argument>
-								<argument>arg1</argument>
-							</arguments> -->
+							<!-- <arguments> <argument>arg0</argument> <argument>arg1</argument> 
+								</arguments> -->
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
-		</plugins>		
+		</plugins>
 	</build>
 	<dependencies>
-	<dependency>
-		<groupId>org.apache.directory.studio</groupId>
-		<artifactId>org.apache.commons.io</artifactId>
-		<version>2.4</version>
-	</dependency>
+		<dependency>
+			<groupId>org.apache.directory.studio</groupId>
+			<artifactId>org.apache.commons.io</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>4.2.5.RELEASE</version>
+		</dependency>
+
 	</dependencies>
 </project>
