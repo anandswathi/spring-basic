@@ -9,11 +9,17 @@
 		class="com.yaliprowess.spring.session.basic.message.impl.FileMessageReaderImpl">
 		<constructor-arg value="res/file.txt" />
 	</bean>
-	
-	<!-- Abstract -->
-	<bean name="readerService" class="com.yaliprowess.spring.session.basic.service.ReaderService">
-		<!-- <constructor-arg ref="fileMessageReader" /> -->
-		<constructor-arg ref="fileMessageReader" />
+	<bean name="httpMessageReader"
+		class="com.yaliprowess.spring.session.basic.message.impl.HTTPMessageReaderImpl">
+		<property name="restUrl"
+			value="http://jsonplaceholder.typicode.com/comments/1" />
 	</bean>
-	
+
+	<!-- Abstract -->
+	<bean name="readerService"
+		class="com.yaliprowess.spring.session.basic.service.ReaderService">
+		<!-- <constructor-arg ref="fileMessageReader" /> -->
+		<constructor-arg ref="httpMessageReader" />
+	</bean>
+
 </beans>
