@@ -3,7 +3,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
 	<bean name="fileMessageReader"
 		class="com.yaliprowess.spring.session.basic.message.impl.FileMessageReaderImpl">
@@ -20,10 +20,20 @@
 		<!-- <constructor-arg ref="fileMessageReader" /> -->
 		<constructor-arg ref="httpMessageReader" />
 	</bean>
+
+	<!-- Property file loader with spring profiles-->
+	<beans>
+		<bean id="placeholderConfig"
+			class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+			<property name="location" value="classpath:application-dev.properties" />
+		</bean>
+	</beans>
+		 
+	<beans profile="test">
+		<bean id="placeholderConfig"
+			class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+			<property name="location" value="classpath:application-test.properties" />
+		</bean>
+	</beans>
 	
-	<!-- Property file loader --> 
-	<bean id="placeholderConfig"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:application.properties" />
-	</bean>
 </beans>
