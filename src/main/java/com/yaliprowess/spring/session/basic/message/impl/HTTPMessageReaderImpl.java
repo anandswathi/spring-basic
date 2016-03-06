@@ -1,6 +1,6 @@
 package com.yaliprowess.spring.session.basic.message.impl;
 
-import java.util.Arrays;
+import com.yaliprowess.spring.session.basic.message.MessageReaderService;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -9,29 +9,38 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import com.yaliprowess.spring.session.basic.message.MessageReaderService;
+import java.util.Arrays;
 
-public class HTTPMessageReaderImpl implements MessageReaderService{
-	
-	private String restUrl = null; 	
+public class HTTPMessageReaderImpl implements MessageReaderService {
 
-	public String read() {			
-		RestTemplate restTemplate = new RestTemplate();		
-		HttpHeaders headers = new HttpHeaders();
-		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-		HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-		
-		ResponseEntity<String> result = restTemplate.exchange(getRestUrl(), HttpMethod.GET, entity, String.class);
-		
-		return result.getBody();
-	}
-	
-	public String getRestUrl() {
-		return restUrl;
-	}
+    private String restUrl = null;
+    RestTemplate restClient = null;
 
-	public void setRestUrl(String restUrl) {
-		this.restUrl = restUrl;
-	}
-	
+    public String read() {
+        restClient = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
+
+        ResponseEntity<String> result = restClient.exchange(getRestUrl(), HttpMethod.GET, entity, String.class);
+
+        return result.getBody();
+    }
+
+    public String getRestUrl() {
+        return restUrl;
+    }
+
+    public void setRestUrl(String restUrl) {
+        this.restUrl = restUrl;
+    }
+
+    public RestTemplate getRestClient() {
+        return restClient;
+    }
+
+    public void setRestClient(RestTemplate restClient) {
+        this.restClient = restClient;
+    }
+
 }

@@ -12,15 +12,19 @@
 	<bean name="httpMessageReader"
 		class="com.yaliprowess.spring.session.basic.message.impl.HTTPMessageReaderImpl">
 		<property name="restUrl" value="${message.http.url}" />
+		<property name="restClient" ref="restClient" />
+		
 	</bean>
 
 	<!-- Service layer -->
 	<bean name="readerService"
 		class="com.yaliprowess.spring.session.basic.service.ReaderService">
-		<constructor-arg ref="fileMessageReader" /> 
-		<!-- <constructor-arg ref="httpMessageReader" />-->
+		<!-- <constructor-arg ref="fileMessageReader" /> -->
+		<constructor-arg ref="httpMessageReader" />
 	</bean>
-
+	
+	<bean name="restClient" class="com.yaliprowess.spring.session.basic.util.RestClient"></bean>
+	
 	<!-- Property file loader with spring profiles-->
 	<beans>
 		<bean id="placeholderConfig"
@@ -34,6 +38,6 @@
 			class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 			<property name="location" value="classpath:application-test.properties" />
 		</bean>
-	</beans>
+	</beans>	
 	
 </beans>

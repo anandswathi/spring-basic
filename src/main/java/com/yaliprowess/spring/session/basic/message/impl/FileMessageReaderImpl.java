@@ -19,6 +19,9 @@ public class FileMessageReaderImpl implements MessageReaderService{
 	public void init(){
 		builder = new StringBuilder();
 	}
+	public void destroy(){		
+			builder = null;		
+	}
 	public String read() {		
 		try {
 			builder.append(IOUtils.toString(in));
