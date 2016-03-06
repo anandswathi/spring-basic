@@ -4,7 +4,9 @@ import com.yaliprowess.spring.session.basic.message.MessageReaderService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
+@Service(value = "readerService")
 public class ReaderService {
 
     private MessageReaderService reader = null;
@@ -14,8 +16,8 @@ public class ReaderService {
     }
 
     @Autowired
-    @Qualifier(value = "httpMessageReader")
-    // @Qualifier(value = "fileMessageReader")
+    // @Qualifier(value = "httpMessageReader")
+    @Qualifier(value = "fileMessageReader")
     public void setReader(MessageReaderService reader) {
         this.reader = reader;
     }

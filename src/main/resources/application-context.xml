@@ -8,22 +8,14 @@
     http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
 	<context:annotation-config />
-
-	  <bean name="fileMessageReader"
+	<context:component-scan base-package="com.yaliprowess.spring.session.basic"/>	
+	<bean name="fileMessageReader"
 		class="com.yaliprowess.spring.session.basic.message.impl.FileMessageReaderImpl" init-method="init" destroy-method="destroy">		
-	</bean> 
+	</bean>
 	<bean name="httpMessageReader"
 		class="com.yaliprowess.spring.session.basic.message.impl.HTTPMessageReaderImpl">				 
 	</bean>
-
-	<!-- Service layer -->
-	  <bean name="readerService"
-		class="com.yaliprowess.spring.session.basic.service.ReaderService">		 
-	</bean> 
-	
-	<bean name="restClient" class="com.yaliprowess.spring.session.basic.util.RestClient"></bean>
-	
-	<!-- Property file loader with spring profiles-->
+		
 	<beans>
 		<bean id="placeholderConfig"
 			class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -37,5 +29,5 @@
 			<property name="location" value="classpath:application-test.properties" />
 		</bean>
 	</beans>	
-	
+
 </beans>
