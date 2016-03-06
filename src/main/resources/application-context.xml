@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-	<bean name="fileMessageReader"
-		class="com.yaliprowess.spring.session.basic.message.impl.FileMessageReaderImpl" init-method="init">
-		<constructor-arg value="${message.file.name}" />
-	</bean>
+	<context:annotation-config />
+
+	  <bean name="fileMessageReader"
+		class="com.yaliprowess.spring.session.basic.message.impl.FileMessageReaderImpl" init-method="init" destroy-method="destroy">
+		<property name="fileName" value="${message.file.name}" />
+	</bean> 
 	<bean name="httpMessageReader"
 		class="com.yaliprowess.spring.session.basic.message.impl.HTTPMessageReaderImpl">
 		<property name="restUrl" value="${message.http.url}" />
@@ -17,11 +21,9 @@
 	</bean>
 
 	<!-- Service layer -->
-	<bean name="readerService"
-		class="com.yaliprowess.spring.session.basic.service.ReaderService">
-		<!-- <constructor-arg ref="fileMessageReader" /> -->
-		<constructor-arg ref="httpMessageReader" />
-	</bean>
+	  <bean name="readerService"
+		class="com.yaliprowess.spring.session.basic.service.ReaderService">		 
+	</bean> 
 	
 	<bean name="restClient" class="com.yaliprowess.spring.session.basic.util.RestClient"></bean>
 	
