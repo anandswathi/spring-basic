@@ -13,7 +13,10 @@ public class FileMessageReaderImpl implements MessageReaderService{
 
 	public FileMessageReaderImpl(String fileName) {
 		ClassLoader classLoader = getClass().getClassLoader();
-		in = classLoader.getResourceAsStream(fileName);				
+		in = classLoader.getResourceAsStream(fileName);						
+	}
+	//Call back method -hooks
+	public void init(){
 		builder = new StringBuilder();
 	}
 	public String read() {		

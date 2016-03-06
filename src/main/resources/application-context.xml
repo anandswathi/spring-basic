@@ -6,7 +6,7 @@
     http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
 	<bean name="fileMessageReader"
-		class="com.yaliprowess.spring.session.basic.message.impl.FileMessageReaderImpl">
+		class="com.yaliprowess.spring.session.basic.message.impl.FileMessageReaderImpl" init-method="init">
 		<constructor-arg value="${message.file.name}" />
 	</bean>
 	<bean name="httpMessageReader"
@@ -17,8 +17,8 @@
 	<!-- Service layer -->
 	<bean name="readerService"
 		class="com.yaliprowess.spring.session.basic.service.ReaderService">
-		<!-- <constructor-arg ref="fileMessageReader" /> -->
-		<constructor-arg ref="httpMessageReader" />
+		<constructor-arg ref="fileMessageReader" /> 
+		<!-- <constructor-arg ref="httpMessageReader" />-->
 	</bean>
 
 	<!-- Property file loader with spring profiles-->
