@@ -14,8 +14,8 @@ public class ReaderService {
     }
 
     @Autowired
-    // @Qualifier(value = "httpMessageReader")
-    @Qualifier(value = "fileMessageReader")
+    @Qualifier(value = "httpMessageReader")
+    // @Qualifier(value = "fileMessageReader")
     public void setReader(MessageReaderService reader) {
         this.reader = reader;
     }

@@ -2,6 +2,8 @@ package com.yaliprowess.spring.session.basic.message.impl;
 
 import com.yaliprowess.spring.session.basic.message.MessageReaderService;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -13,8 +15,11 @@ import java.util.Arrays;
 
 public class HTTPMessageReaderImpl implements MessageReaderService {
 
+    @Value(value = "${message.http.url}")
     private String restUrl = null;
-    RestTemplate restClient = null;
+
+    @Autowired
+    private RestTemplate restClient = null;
 
     public String read() {
         restClient = new RestTemplate();

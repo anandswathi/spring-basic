@@ -10,14 +10,10 @@
 	<context:annotation-config />
 
 	  <bean name="fileMessageReader"
-		class="com.yaliprowess.spring.session.basic.message.impl.FileMessageReaderImpl" init-method="init" destroy-method="destroy">
-		<property name="fileName" value="${message.file.name}" />
+		class="com.yaliprowess.spring.session.basic.message.impl.FileMessageReaderImpl" init-method="init" destroy-method="destroy">		
 	</bean> 
 	<bean name="httpMessageReader"
-		class="com.yaliprowess.spring.session.basic.message.impl.HTTPMessageReaderImpl">
-		<property name="restUrl" value="${message.http.url}" />
-		<property name="restClient" ref="restClient" />
-		
+		class="com.yaliprowess.spring.session.basic.message.impl.HTTPMessageReaderImpl">				 
 	</bean>
 
 	<!-- Service layer -->
